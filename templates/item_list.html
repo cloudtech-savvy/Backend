@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>item_list</title>
+</head>
+<body>
+<h1>Item list </h1>
+    <table>
+        <tr>
+            <th>Item Name</th>
+            <th>Item Price</th>
+            <th>Item Quantity</th>
+            <th>Item Description</th>
+            <th>Item Image</th>
+            <th>Item Category</th>
+            <th>Item Status</th>
+            <th>Item Action</th>
+        </tr>
+        <?php
+            foreach($items as $item){
+                echo "<tr>";
+                echo "<td>".$item['item_name']."</td>";
+                echo "<td>".$item['item_price']."</td>";
+                echo "<td>".$item['item_quantity']."</td>";
+                echo "<td>".$item['item_description']."</td>";
+                echo "<td><img src='".base_url('uploads/'.$item['item_image'])."' width='100' height='100'></td>";
+                echo "<td>".$item['item_category']."</td>";
+                echo "<td>".$item['item_status']."</td>";
+                echo "<td><a href='".base_url('index.php/item/edit/'.$item['item_id'])."'>Edit</a> | <a href='".base_url('index.php/item/delete/'.$item['item_id'])."'>Delete</a></td>";
+                echo "</tr>";
+            }
+        ?>
+    </table>
+    <a href="<?php echo base_url('index.php/item/create')?>">Add Item</a>
+
+</body>
+</html>
