@@ -55,24 +55,23 @@ def dashboard(request):
 # user registration view
 
 def register_View(request):
-    if  request.method == 'POST':
-       return render(request, 'hi',)
-    # if request.method == 'POST':
-    #     form = UserRegisterForm(request.POST)
-    #     if form.is_valid():
-    #         new_user = form.save()
-    #         username = form.cleaned_data.get('username')
-    #         messages.success(request, f'Hey {username}, your account has been created successfully!')
-    #         new_user = authenticate(username=form.cleaned_data['username'],
-    #                                 password=form.cleaned_data['password1'],
-    #                                 )
-    #         # Login the new user
-    #         login(request, new_user)
-    #         return redirect('homepage')  # Make sure 'dashboard:' is a valid URL name
-    # else:
-    #     form = UserRegisterForm() 
-    # context = {'form': form}   
-    # return render(request, 'signup.html', context)
+  
+    if request.method == 'POST':
+        form = UserRegisterForm(request.POST)
+        if form.is_valid():
+            new_user = form.save()
+            username = form.cleaned_data.get('username')
+            messages.success(request, f'Hey {username}, your account has been created successfully!')
+            new_user = authenticate(username=form.cleaned_data['username'],
+                                    password=form.cleaned_data['password1'],
+                                    )
+            # Login the new user
+            login(request, new_user)
+            return redirect('homepage')  # Make sure 'dashboard:' is a valid URL name
+    else:
+        form = UserRegisterForm() 
+    context = {'form': form}   
+    return render(request, 'signup.html', context)
 
   
 #user login view

@@ -13,10 +13,10 @@ import os
 from pathlib import Path
 from datetime import timedelta
 
-# from dotenv import load_dotenv
+from dotenv import load_dotenv
 
-# def configure():
-    # load_dotenv()
+def configure():
+    load_dotenv()
     # # DEBUG = os.getenv('DEBUG')
     # SECRET_KEY = os.getenv('SECRET_KEY')
     # DATABASES = {
@@ -43,13 +43,13 @@ SECRET_KEY = 'django-insecure-i#96_z8@os(xqjq^j2r7n8!+v$9e!1f*p%7&+&sqg8q8be4a%%
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 # ALLOWED_HOSTS = [ os.getenv('ALLOWED_HOSTS')]
-ALLOWED_HOSTS = []
+# ALLOWED_HOSTS = ['*']
 
 # Application definition
 
 INSTALLED_APPS = [
     'corsheaders',
-    'jazzmin',  
+    'jazzmin',   
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -62,48 +62,40 @@ INSTALLED_APPS = [
     #third  party apps
     'taggit',
     'ckeditor',
-   
-    
-
-
 ]
 ######################### corsheaders ####################
 
 
 
 
-CORS_ORIGIN_WHITELIST = (
-    'http://localhost:3000', 
+# CORS_ORIGIN_WHITELIST = (
+#     'http://localhost:3000',
+   
 
-)
+# )
+# CORS_ALLOW_ALL_ORIGINS = True
+# # CORS_ORIGIN_ALLOW_ALL = True
+# CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOW_ALL_ORIGINS = True
-
+CORS_ORIGIN_WHITELIST = [
+    "http://localhost:3000",]
 CORS_ALLOWED_ORIGINS = [
-    'http://127.0.0.1:3000',
-]
-CORS_ALLOWED_ORIGIN_REGEXES = [
     'http://localhost:3000',
 ]
-CORS_ALLOW_METHODS = (
-    'DELETE',
-    'GET',
-    'OPTIONS',
-    'PATCH',
-    'POST',
-    'PUT',
-)
-# CORS settings
-CORS_ALLOW_ALL_ORIGINS = True
-CORS_ALLOW_METHODS = (
-    'DELETE',
-    'GET',
-    'OPTIONS',
-    'PATCH',
-    'POST',
-    'PUT',
-)
+# CORS_ALLOWED_ORIGIN_REGEXES = [
+#     'http://localhost:3000',
+# # ]
+# CORS_ALLOW_METHODS = (
+#     'DELETE',
+#     'GET',
+#     'OPTIONS',
+#     'PATCH',
+#     'POST',
+#     'PUT',
+# )
+
 MIDDLEWARE = [
-    'corsheaders.middleware.CorsMiddleware',  # CORS middleware should be first
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -112,7 +104,6 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
-
 
 ROOT_URLCONF = 'ceremo.urls'
 
